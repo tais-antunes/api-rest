@@ -24,7 +24,7 @@ public class Cliente {
 	private String nomeCompleto;
 	
 	@NotNull(message = "Campo 'Sexo' obrigatório")
-	@Column(name = "nome_completo")
+	@Column(name = "sexo")
 	private String sexo;
 	
 	@NotNull(message = "Campo 'Data Nascimento' obrigatório")
