@@ -1,6 +1,9 @@
 package br.com.api.rest.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -17,12 +20,18 @@ public class Cidade {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
 	private Long id;
 	
-	@NotNull(message = "Campo 'Nome' obrigatório")
+	
+	@NotNull @NotEmpty
+	@Column(name = "nome_cidade", nullable = false)
 	private String nome;
 	
-	@NotNull(message = "Campo 'Estado' obrigatório")
-	private String estado;
+	
+	@NotNull @NotEmpty
+	@Enumerated(EnumType.STRING)
+	@Column(name = "estado", nullable = false, length = 2)
+	private Estados estado = Estados.RS;
 	
 }
