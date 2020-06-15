@@ -29,7 +29,7 @@ public class Cidade {
 	private String nome;
 	
 	
-	@NotNull @NotEmpty
+	@NotNull
 	@Enumerated(EnumType.STRING)
 	@Column(name = "estado", nullable = false, length = 2)
 	private Estados estado = Estados.RS;

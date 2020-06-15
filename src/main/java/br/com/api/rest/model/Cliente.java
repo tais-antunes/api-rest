@@ -37,7 +37,7 @@ public class Cliente {
 	private String nomeCompleto;
 	
 	
-	@NotNull @NotEmpty
+	@NotNull
 	@Enumerated(EnumType.STRING)
 	@Column(name = "sexo", nullable = false, length = 1)
 	private Sexo sexo;

@@ -6,4 +6,5 @@ import br.com.api.rest.model.Cidade;
 
 public interface CidadeRepository extends JpaRepository<Cidade, Long> {
 
+
 }
