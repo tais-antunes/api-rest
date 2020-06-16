@@ -43,19 +43,19 @@ public class Cliente {
 	private Sexo sexo;
 
 
-	@NotNull @NotEmpty
+	@NotNull
 	@Temporal(TemporalType.DATE)
 	@JsonFormat(pattern="yyyy-MM-dd")
 	@Column(name = "data_nascimento", nullable = false)
 	private Date dataNascimento;
 	
 	
-	@NotNull @NotEmpty
+	@NotNull
 	@Column(name = "idade", nullable = false)
 	private int idade;
 	
 	
-	@NotNull @NotEmpty
+	@NotNull
 	@ManyToOne
 	@JoinColumn(name = "cidade_id")
 	private Cidade cidade;
