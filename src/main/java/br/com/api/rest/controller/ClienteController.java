@@ -32,7 +32,6 @@ public class ClienteController {
 		return clienteRepository.findAll();
 	}
 	
-	
 	@PostMapping
 	public Cliente cadastrarCliente(@RequestBody @Valid Cliente cliente) {
 		return clienteRepository.save(cliente);

@@ -17,4 +17,5 @@ public class ClienteDto {
 		this.cidade = cliente.getCidade();
 	}
 	
+	
 }

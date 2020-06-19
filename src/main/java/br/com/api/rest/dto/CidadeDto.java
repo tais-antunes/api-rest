@@ -1,5 +1,8 @@
 package br.com.api.rest.dto;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import br.com.api.rest.model.Cidade;
 import br.com.api.rest.model.Estados;
 import lombok.Getter;
@@ -14,4 +17,10 @@ public class CidadeDto {
 		this.nome = cidade.getNome();
 		this.estado = cidade.getEstado();
 	}
+
+
+	public static List<CidadeDto> lista(List<Cidade> cidade){
+		return cidade.stream().map(CidadeDto::new).collect(Collectors.toList());
+	}
+
 }
