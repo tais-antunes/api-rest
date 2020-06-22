@@ -1,6 +1,8 @@
 package br.com.api.rest.dto;
 
 import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import br.com.api.rest.model.Cliente;
 import br.com.api.rest.model.Sexo;
@@ -19,8 +21,11 @@ public class ClienteDto {
 		this.sexo = cliente.getSexo();
 		this.dataNascimento = cliente.getDataNascimento();
 		this.idade = cliente.getIdade();
-		
 	}
 	
+	
+	public static List<ClienteDto> converterCliente(List<Cliente> cliente) {
+		return cliente.stream().map(ClienteDto::new).collect(Collectors.toList());
+	}
 	
 }

@@ -33,9 +33,15 @@ public class CidadeController {
 	private CidadeRepository cidadeRepository;
 	
 	@GetMapping
-	public List<CidadeDto> listarCidade() {
-		List<Cidade> cidades = cidadeRepository.findAll();
-		return CidadeDto.lista(cidades);
+	public List<CidadeDto> listarCidade(String nomeCidade) {
+		if(nomeCidade == null) {
+			List<Cidade> cidades = cidadeRepository.findAll();
+			return CidadeDto.lista(cidades);
+		} else {
+			List<Cidade> cidades = cidadeRepository.findByNome(nomeCidade);
+			return CidadeDto.lista(cidades);
+		}
+		
 	}
 
 	
