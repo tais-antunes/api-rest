@@ -1,7 +1,6 @@
 package br.com.api.rest.controller;
 
 import java.util.List;
-import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -19,7 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.api.rest.dto.ClienteDto;
 import br.com.api.rest.model.Cliente;
-import br.com.api.rest.repository.ClienteRepository;
 import br.com.api.rest.service.ClienteService;
 
 @RestController
@@ -27,33 +25,22 @@ import br.com.api.rest.service.ClienteService;
 public class ClienteController {
 
 	@Autowired
-	private ClienteRepository clienteRepository;
-	
-	@Autowired
 	private ClienteService clienteService;
 
 	@GetMapping
 	public List<ClienteDto> listaCliente(String nomeCliente) {
-		if(nomeCliente == null) {
-			List<Cliente> cliente = clienteRepository.findAll();
-			return ClienteDto.converterCliente(cliente);
-		} else {
-			List<Cliente> cliente = clienteRepository.findByNomeCompleto(nomeCliente);
-			return ClienteDto.converterCliente(cliente);
-		}
+		return clienteService.listaCliente(nomeCliente);
 	}
-	
 	
 	@GetMapping("/{id}")
-	public Cliente listarClienteId(@PathVariable Long id) {
-		Optional<Cliente> cliente = clienteRepository.findById(id);
-		return cliente.get();
+	public ResponseEntity<ClienteDto> listaClienteId(@PathVariable Long id) {
+		return clienteService.listarCidadeId(id);
 	}
 	
-	
 	@PostMapping
-	public Cliente cadastrarCliente(@RequestBody @Valid Cliente cliente) {
-		return clienteRepository.save(cliente);
+	public ResponseEntity<Cliente> cadastrarCliente(@RequestBody @Valid Cliente cliente) {
+		clienteService.cadastrarCliente(cliente);
+		return ResponseEntity.status(HttpStatus.CREATED).build();
 	}
 	
 	@PutMapping("/{id}")
@@ -64,8 +51,9 @@ public class ClienteController {
 	
 
 	@DeleteMapping("/{id}")
-	public void deletarCliente(@PathVariable Long id) {
-		clienteRepository.deleteById(id);
+	public ResponseEntity<Cliente> deletarCliente(@PathVariable Long id) {
+		clienteService.deletarCliente(id);
+		return ResponseEntity.status(HttpStatus.OK).build();
 	}
 }	
 	
