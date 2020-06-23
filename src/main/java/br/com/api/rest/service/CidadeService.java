@@ -1,5 +1,6 @@
 package br.com.api.rest.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import javax.validation.Valid;
@@ -23,11 +24,23 @@ public class CidadeService {
 	public CidadeService(CidadeRepository cidadeRepository) {
 		this.cidadeRepository = cidadeRepository;
 	}
-
-	public ResponseEntity<Cidade> listarCidadeId(Long id) {
+	
+	
+	public List<CidadeDto> listaCidade(String nomeCidade) {
+		if(nomeCidade == null) {
+			List<Cidade> cidades = cidadeRepository.findAll();
+			return CidadeDto.lista(cidades);
+		} else {
+			List<Cidade> cidades = cidadeRepository.findByNome(nomeCidade);
+			return CidadeDto.lista(cidades);
+		}
+		
+	}
+	
+	public ResponseEntity<CidadeDto> listarCidadeId(@PathVariable Long id) {
 		Optional<Cidade> cidade = cidadeRepository.findById(id);
 		if(cidade.isPresent()) {
-			 ResponseEntity.ok(new CidadeDto(cidade.get()));
+			return ResponseEntity.ok(new CidadeDto(cidade.get()));
 		}
 		
 		return ResponseEntity.noContent().build();
@@ -35,7 +48,6 @@ public class CidadeService {
 	
 	
 	public Cidade cadastrar(Cidade cidade) {
-		
 		return cidadeRepository.save(cidade);
 	}
 	

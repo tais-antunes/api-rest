@@ -1,7 +1,6 @@
 package br.com.api.rest.controller;
 
 import java.util.List;
-import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -19,7 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.api.rest.dto.CidadeDto;
 import br.com.api.rest.model.Cidade;
-import br.com.api.rest.repository.CidadeRepository;
 import br.com.api.rest.service.CidadeService;
 
 @RestController
@@ -29,30 +27,21 @@ public class CidadeController {
 	@Autowired
 	private CidadeService cidadeService;
 	
-	@Autowired
-	private CidadeRepository cidadeRepository;
 	
 	@GetMapping
 	public List<CidadeDto> listarCidade(String nomeCidade) {
-		if(nomeCidade == null) {
-			List<Cidade> cidades = cidadeRepository.findAll();
-			return CidadeDto.lista(cidades);
-		} else {
-			List<Cidade> cidades = cidadeRepository.findByNome(nomeCidade);
-			return CidadeDto.lista(cidades);
-		}
+		return cidadeService.listaCidade(nomeCidade);
 		
 	}
-
 	
 	@GetMapping("/{id}")
-	public Cidade listaCidadeId(@PathVariable Long id) {
-		Optional<Cidade> cidade = cidadeRepository.findById(id);
-		return cidade.get();
+	public ResponseEntity<CidadeDto> listaCidadeId(@PathVariable Long id) {
+		return cidadeService.listarCidadeId(id);
+		
 	}
 	
 	@PostMapping
-	public ResponseEntity<CidadeDto> cadastrarCidade(@RequestBody  @Valid Cidade cidadeDto) {
+	public ResponseEntity<CidadeDto> cadastrarCidade(@RequestBody @Valid Cidade cidadeDto) {
 		cidadeService.cadastrar(cidadeDto);
 		return ResponseEntity.status(HttpStatus.CREATED).build();
 	}
