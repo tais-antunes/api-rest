@@ -41,8 +41,6 @@ public class ClienteController {
 			List<Cliente> cliente = clienteRepository.findByNomeCompleto(nomeCliente);
 			return ClienteDto.converterCliente(cliente);
 		}
-		
-		
 	}
 	
 	

@@ -35,6 +35,7 @@ public class CidadeService {
 	
 	
 	public Cidade cadastrar(Cidade cidade) {
+		
 		return cidadeRepository.save(cidade);
 	}
 	
