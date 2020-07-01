@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.api.rest.dto.ClienteDto;
-import br.com.api.rest.model.Cliente;
+import br.com.api.rest.entity.Cliente;
 import br.com.api.rest.service.ClienteService;
 
 @RestController
@@ -55,5 +55,6 @@ public class ClienteController {
 		clienteService.deletarCliente(id);
 		return ResponseEntity.status(HttpStatus.OK).build();
 	}
+	
 }	
 	

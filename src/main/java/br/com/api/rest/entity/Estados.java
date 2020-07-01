@@ -1,4 +1,4 @@
-package br.com.api.rest.model;
+package br.com.api.rest.entity;
 
 public enum Estados {
 	 AC,

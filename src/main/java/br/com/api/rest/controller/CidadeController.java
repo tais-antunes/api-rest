@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.api.rest.dto.CidadeDto;
-import br.com.api.rest.model.Cidade;
+import br.com.api.rest.entity.Cidade;
 import br.com.api.rest.service.CidadeService;
 
 @RestController

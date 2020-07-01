@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import br.com.api.rest.dto.ClienteDto;
-import br.com.api.rest.model.Cliente;
+import br.com.api.rest.entity.Cliente;
 import br.com.api.rest.repository.ClienteRepository;
 
 @Service

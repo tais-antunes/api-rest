@@ -3,8 +3,8 @@ package br.com.api.rest.dto;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import br.com.api.rest.model.Cidade;
-import br.com.api.rest.model.Estados;
+import br.com.api.rest.entity.Cidade;
+import br.com.api.rest.entity.Estados;
 import lombok.Getter;
 
 @Getter

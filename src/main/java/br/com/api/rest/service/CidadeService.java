@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import br.com.api.rest.dto.CidadeDto;
-import br.com.api.rest.model.Cidade;
+import br.com.api.rest.entity.Cidade;
 import br.com.api.rest.repository.CidadeRepository;
 
 @Service

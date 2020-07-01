@@ -1,0 +1,18 @@
+ALTER TABLE cidade ADD COLUMN endereco_id INT NOT NULL;
+
+ALTER TABLE cidade ADD CONSTRAINT fk_endereco FOREING KEY (endereco_id) REFERENCES endereco (id);
+
+CREATE TABLE endereco (
+	id		INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
+	cep		VARCHAR(8) NOT NULL,
+	logradouro	VARCHAR(255) NOT NULL,
+	complemento	VARCHAR(255) NOT NULL,
+	bairro		VARCHAR(255) NOT NULL,
+	localidade	VARCHAR(255) NOT NULL,
+	uf		VARCHAR(2) NOT NULL,
+	unidade		VARCHAR(255) NOT NULL,
+	ibge		VARCHAR(7) NOT NULL,
+	gia		VARCHAR(255) NOT NULL
+
+) ENGINE=InnoDB;
+	

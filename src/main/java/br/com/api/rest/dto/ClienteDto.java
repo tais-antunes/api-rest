@@ -4,8 +4,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import br.com.api.rest.model.Cliente;
-import br.com.api.rest.model.Sexo;
+import br.com.api.rest.entity.Cliente;
+import br.com.api.rest.entity.Sexo;
 import lombok.Getter;
 
 @Getter
