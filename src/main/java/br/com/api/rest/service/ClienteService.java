@@ -11,7 +11,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import br.com.api.rest.client.ViaCEPClient;
 import br.com.api.rest.dto.ClienteDto;
+import br.com.api.rest.dto.EnderecoClienteDTO;
 import br.com.api.rest.entity.Cliente;
 import br.com.api.rest.repository.ClienteRepository;
 
@@ -19,6 +21,9 @@ import br.com.api.rest.repository.ClienteRepository;
 public class ClienteService {
 	
 	private ClienteRepository clienteRepository;
+	
+	@Autowired
+	private ViaCEPClient viaCEPClient;
 	
 	
 	@Autowired
@@ -47,8 +52,21 @@ public class ClienteService {
 	}
 	
 	
-	public Cliente cadastrarCliente(Cliente cliente) {
-		return clienteRepository.save(cliente);
+//	public Cliente cadastrarCliente(Cliente cliente) {
+//		return clienteRepository.save(cliente);
+//	}
+	
+	
+	public Cliente cadastrarcep(@RequestBody @Valid Cliente cliente) {
+		
+		EnderecoClienteDTO endereco = viaCEPClient.buscacep(cliente.getCidade());
+		
+		Cliente cli = new Cliente();
+		endereco.setLocalidade(endereco.getLocalidade());
+		endereco.setEstado(endereco.getEstado());
+		cli.setCidade(cli.getCidade());
+		
+		return clienteRepository.save(cliente, cli);
 	}
 	
 	
@@ -73,5 +91,8 @@ public class ClienteService {
 		
 		return ResponseEntity.notFound().build();
 	}
+
+
+
 
 }

@@ -1,6 +1,7 @@
 package br.com.api.rest.entity;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -21,9 +22,8 @@ import javax.validation.constraints.NotNull;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.Data;
-
-@Entity
 @Data
+@Entity
 @Table(name = "cliente")
 public class Cliente {
 	
@@ -61,5 +61,16 @@ public class Cliente {
 	@ManyToOne
 	@JoinColumn(name = "cidade_id")
 	private Cidade cidade;
+	
+	@NotEmpty
+	@Column(name = "cep", nullable = false)
+	private String cep;
+
+	public void setCidade(String nome, Object setEstado) {
+		
+	}
+
+
+	
 	
 }

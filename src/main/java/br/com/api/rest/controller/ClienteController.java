@@ -2,8 +2,6 @@ package br.com.api.rest.controller;
 
 import java.util.List;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.api.rest.dto.ClienteDto;
+import br.com.api.rest.entity.Cidade;
 import br.com.api.rest.entity.Cliente;
 import br.com.api.rest.service.ClienteService;
 
@@ -27,6 +26,7 @@ public class ClienteController {
 	@Autowired
 	private ClienteService clienteService;
 
+	
 	@GetMapping
 	public List<ClienteDto> listaCliente(String nomeCliente) {
 		return clienteService.listaCliente(nomeCliente);
@@ -37,11 +37,23 @@ public class ClienteController {
 		return clienteService.listarCidadeId(id);
 	}
 	
-	@PostMapping
-	public ResponseEntity<Cliente> cadastrarCliente(@RequestBody @Valid Cliente cliente) {
-		clienteService.cadastrarCliente(cliente);
-		return ResponseEntity.status(HttpStatus.CREATED).build();
+//	@PostMapping
+//	public ResponseEntity<Cliente> cadastrarCliente(@RequestBody @Valid Cliente cliente, String cep, Cidade cidade) {
+//		try {
+//			clienteService.cadastrarCliente(cliente, cep, cidade);
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+//		return ResponseEntity.status(HttpStatus.CREATED).build();
+//	}
+	
+	@PostMapping("/cadastrar")
+	public Cliente cadastrarCliente(@RequestBody Cliente cliente) {
+		return clienteService.cadastrarcep(cliente);
+		
 	}
+	
+
 	
 	@PutMapping("/{id}")
 	public ResponseEntity<Cliente> atualizarCliente(@RequestBody Cliente cliente, @PathVariable Long id){
