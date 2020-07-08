@@ -21,10 +21,12 @@ import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 @Data
 @Entity
 @Table(name = "cliente")
+@AllArgsConstructor
 public class Cliente {
 	
 	@Id
@@ -66,11 +68,7 @@ public class Cliente {
 	@Column(name = "cep", nullable = false)
 	private String cep;
 
-	public void setCidade(String nome, Object setEstado) {
-		
-	}
+	
 
 
-	
-	
 }

@@ -7,6 +7,6 @@ import lombok.Data;
 @AllArgsConstructor
 public class EnderecoClienteDTO {
 
-	private String localidade;
+	private String cidade;
 	private String estado;
 }

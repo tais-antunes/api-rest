@@ -15,7 +15,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Data
 @Table(name = "cidade")
 @NoArgsConstructor
 public class Cidade {
@@ -35,6 +34,16 @@ public class Cidade {
 	@Enumerated(EnumType.STRING)
 	@Column(name = "estado", nullable = false, length = 2)
 	private Estados estado = Estados.RS;
+
+
+	public Cidade getNome() {
+		return getNome();
+	}
+
+
+	public Cidade getEstado() {
+		return getEstado();
+	}
 	
 	
 }

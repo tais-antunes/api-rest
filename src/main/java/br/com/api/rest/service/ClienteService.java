@@ -6,6 +6,8 @@ import java.util.Optional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.openfeign.FeignClientsConfiguration;
+import org.springframework.context.annotation.Import;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,10 +16,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import br.com.api.rest.client.ViaCEPClient;
 import br.com.api.rest.dto.ClienteDto;
 import br.com.api.rest.dto.EnderecoClienteDTO;
+import br.com.api.rest.entity.Cidade;
 import br.com.api.rest.entity.Cliente;
 import br.com.api.rest.repository.ClienteRepository;
 
 @Service
+@Import(FeignClientsConfiguration.class)
 public class ClienteService {
 	
 	private ClienteRepository clienteRepository;
@@ -57,16 +61,18 @@ public class ClienteService {
 //	}
 	
 	
-	public Cliente cadastrarcep(@RequestBody @Valid Cliente cliente) {
+	public ResponseEntity<Cliente> cadastrarcep(@Valid Cliente cliente, String cep) {
 		
-		EnderecoClienteDTO endereco = viaCEPClient.buscacep(cliente.getCidade());
+		//ResponseEntity<EnderecoClienteDTO> endereco = viaCEPClient.buscacep(cep);
 		
-		Cliente cli = new Cliente();
-		endereco.setLocalidade(endereco.getLocalidade());
-		endereco.setEstado(endereco.getEstado());
-		cli.setCidade(cli.getCidade());
+		Cidade cidade = new Cidade();
+		cliente.setCidade(cidade.getNome());
+		cliente.setCidade(cidade.getEstado());
 		
-		return clienteRepository.save(cliente, cli);
+		clienteRepository.save(cliente);
+		
+		return ResponseEntity.ok().build();
+		
 	}
 	
 	

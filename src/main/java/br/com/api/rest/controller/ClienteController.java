@@ -2,7 +2,11 @@ package br.com.api.rest.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.openfeign.FeignClientsConfiguration;
+import org.springframework.context.annotation.Import;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -15,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.api.rest.dto.ClienteDto;
-import br.com.api.rest.entity.Cidade;
 import br.com.api.rest.entity.Cliente;
 import br.com.api.rest.service.ClienteService;
 
@@ -48,9 +51,9 @@ public class ClienteController {
 //	}
 	
 	@PostMapping("/cadastrar")
-	public Cliente cadastrarCliente(@RequestBody Cliente cliente) {
-		return clienteService.cadastrarcep(cliente);
-		
+	public ResponseEntity<Cliente> cadastrarCliente(@RequestBody @Valid Cliente cliente, String cep) {
+		 clienteService.cadastrarcep(cliente, cep);
+		 return ResponseEntity.status(HttpStatus.CREATED).build();
 	}
 	
 
