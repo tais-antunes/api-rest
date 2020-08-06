@@ -4,7 +4,7 @@
 Essa atividade foi desenvolvida para a capacitação com a Java e Spring Boot conforme o padrão REST.
  
  ### Descrição :dart:
- Nessa atividade foi proposta a criação de uma API para cadastro de cliente básico, para o aprendizado do framework Spring Boot com a linguagem Java com o padrão REST. Nela foi desenvolvida as seguintes atividades: 
+ Nessa atividade foi proposta a criação de uma API para cadastro de cliente básico, para o aprendizado do framework Spring Boot com a linguagem Java seguindo o padrão REST. Nela foi desenvolvida as seguintes atividades: 
 - Criação do controller de cidade e cliente
 - Validação com Bean validation
 - Classes organizadas em pacotes devida suas funções
