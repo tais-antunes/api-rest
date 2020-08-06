@@ -1,3 +1,5 @@
 # api-rest
-Criação de Api Rest para o cadastro de cliente e cidade, usando Spring Boot Framework.
+
+### API para cadastro de cliente :octocat:
+Essa atividade foi desenvolvida para a capacitação com a stack de Java e Spring Boot.
  
